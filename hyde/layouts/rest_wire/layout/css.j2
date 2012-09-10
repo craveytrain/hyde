@@ -1,0 +1,9 @@
+{% if not site.config.mode == "production" %}
+<link rel="stylesheet/less" href="{{ media_url('less/main.less') }}">
+<script src="{{ media_url('js/libs/less.js') }}"></script>
+
+{% endif %}
+
+{% if site.config.mode == "production" %}
+<link rel="stylesheet/less" href="{{ media_url('css/main.css') }}">
+{% endif %}

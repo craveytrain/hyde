@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  {% block starthead %}{% endblock starthead %}
+  <meta charset="{{ resource.meta.charset }}">
+
+  <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
+  <meta name="description" content="{{ resource.meta.description }}">
+  <meta name="author" content="{{ resource.meta.author }}">
+
+  <meta name="viewport" content="{{ resource.meta.viewport }}">
+
+  {% block css %}
+  <link rel="stylesheet" href="{{ media_url('css/main.css') }}">
+  {% endblock css %}
+
+  {% block headjs %}
+    <script src="{{ media_url('js/libs/modernizr.js') }}"></script>
+  {% endblock headjs %}
+  {% block endhead %}{% endblock endhead %}
+</head>
+<body id="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+  {% block content %}
+  <div id="container">
+      {% block container %}
+      <div id="main" role="main">
+          <header class="banner clearfix">
+          {% block header -%}
+            <h1>BASIC</h1>
+            <h3>A hyde website</h3>
+          {%- endblock %}
+          {% block nav %}
+          {% from "macros.j2" import render_nav with context %}
+          {{ render_nav(menu, 'main_nav') }}
+          {% endblock %}
+          </header>
+          <section class="content">
+          {% block main %}
+          {% endblock main %}
+          </section>
+      </div>
+    {% endblock container %}
+  </div> <!--! end of #container -->
+  <footer>
+      Powered by <a href="http://ringce.com/hyde">hyde</a>.
+  </footer>
+  {% endblock content%}
+  {% block js %}
+  <!-- Javascript at the bottom for fast page loading -->
+  {% block jquery %}
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="{{ media_url('js/libs/jquery.js') }}"><\/script>')</script>
+  {% endblock jquery %}
+
+  {% block scripts %}
+  {% endblock scripts %}
+
+
+  {% block analytics %}
+  {% include "analytics.j2" %}
+  {% endblock analytics %}
+
+  {% endblock js %}
+</body>
+</html>

@@ -1,0 +1,5 @@
+extends: site.yaml
+mode: production
+less:
+  args:
+    compress: ""
